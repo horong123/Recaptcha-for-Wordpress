@@ -23,9 +23,9 @@ It is accessible by everyone. If the user has trouble reading the CAPTCHA challe
 
 To install in regular WordPress and [WordPress MultiSite](http://codex.wordpress.org/Create_A_Network):
 
-1. Upload the `wp-recaptcha` folder to the `/wp-content/plugins/` directory
-1. Activate the plugin through the `Plugins` menu in WordPress
-1. Get the reCAPTCHA keys [here](http://recaptcha.net/api/getkey?domain=www.blaenkdenum.com&app=wordpress "reCAPTCHA API keys") and/or the MailHide keys [here](http://mailhide.recaptcha.net/apikey "MailHide keys")
+1. Upload the `recaptcha-for-wordpress` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the `Plugins` menu in WordPress
+3. Get the reCAPTCHA keys [here](http://recaptcha.net/api/getkey?domain=www.blaenkdenum.com&app=wordpress "reCAPTCHA API keys") and/or the MailHide keys [here](http://mailhide.recaptcha.net/apikey "MailHide keys")
 
 == Requirements ==
 

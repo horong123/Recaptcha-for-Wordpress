@@ -32,8 +32,11 @@ if (!class_exists('reCAPTCHA')) {
             add_action('init', array(&$this, 'load_textdomain'));
 
             // styling
-            add_action('wp_head', array(&$this, 'register_stylesheets')); // make unnecessary: instead, inform of classes for styling
-            add_action('admin_head', array(&$this, 'register_stylesheets')); // make unnecessary: shouldn't require styling in the options page
+            //Rush@20141124-----------
+            //Disable register sylesheet action but include it in theme's stylesheet
+            //add_action('wp_head', array(&$this, 'register_stylesheets')); // make unnecessary: instead, inform of classes for styling
+            //add_action('admin_head', array(&$this, 'register_stylesheets')); // make unnecessary: shouldn't require styling in the options page
+//Rush@20141124-----------
             
             if ($this->options['show_in_registration'])
                 add_action('login_head', array(&$this, 'registration_style')); // make unnecessary: instead use jQuery and add to the footer?

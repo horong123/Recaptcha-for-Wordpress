@@ -3,7 +3,7 @@
 // just making sure the constant is defined
 if (!defined('WP_CONTENT_DIR'))
     define('WP_CONTENT_DIR', ABSPATH . 'wp-content');
- 
+
 
 if (!class_exists('Environment')) {
     class Environment {
