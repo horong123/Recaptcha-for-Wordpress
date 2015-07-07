@@ -37,7 +37,8 @@ To install in regular WordPress and [WordPress MultiSite](http://codex.wordpress
 == ChangeLog ==
 
 = Version 0.0.2 =
-*
+* Replace some functions to use wordpress built-in functions instead from WPPlugin class
+* Add custom theme options
 
 = Version 0.0.1 =
 * Initial version
