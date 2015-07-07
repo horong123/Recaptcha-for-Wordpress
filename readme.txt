@@ -33,3 +33,11 @@ To install in regular WordPress and [WordPress MultiSite](http://codex.wordpress
 * If you plan on using MailHide, you will need to have the [mcrypt](http://php.net/mcrypt "mcrypt") PHP module loaded (*Most servers do*)
 * If you turn on XHTML 1.0 Compliance you and your users will need to have Javascript enabled to see and complete the reCAPTCHA form
 * Your theme must have a `do_action('comment_form', $post->ID);` call right before the end of your form (*Right before the closing form tag*). Most themes do.
+
+== ChangeLog ==
+
+= Version 0.0.2 =
+*
+
+= Version 0.0.1 =
+* Initial version

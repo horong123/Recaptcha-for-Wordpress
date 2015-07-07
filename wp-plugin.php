@@ -67,7 +67,7 @@ if (!class_exists('WPPlugin')) {
         
         static function path_to_plugin_directory() {
             $current_directory = basename(dirname(__FILE__));
-            
+
             return WPPlugin::plugins_directory() . "/${current_directory}";
         }
         

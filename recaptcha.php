@@ -15,8 +15,8 @@ if (!class_exists('reCAPTCHA')) {
         
         // php 5 constructor
         function __construct($options_name) {
-            parent::__construct($options_name);
-            
+            parent::__construct($options_name);            
+                 
             $this->register_default_options();
             
             // require the recaptcha library
@@ -33,13 +33,20 @@ if (!class_exists('reCAPTCHA')) {
 
             // styling
             //Rush@20141124-----------
-            //Disable register sylesheet action but include it in theme's stylesheet
+            //Disable register stylesheets action but include it in theme's stylesheet
+            //Rush@20150707 --- use wpenqueue_scripts hook to call register_stylesheets
             //add_action('wp_head', array(&$this, 'register_stylesheets')); // make unnecessary: instead, inform of classes for styling
+            add_action('wp_enqueue_scripts', array(&$this, 'register_stylesheets'));
+            //Rush@20150707
             //add_action('admin_head', array(&$this, 'register_stylesheets')); // make unnecessary: shouldn't require styling in the options page
 //Rush@20141124-----------
             
-            if ($this->options['show_in_registration'])
-                add_action('login_head', array(&$this, 'registration_style')); // make unnecessary: instead use jQuery and add to the footer?
+            if ($this->options['show_in_registration']) {
+				//Rush@20150707 --- use login_enqueue_scripts hook to register stylesheet on the login/registration page
+                //add_action('login_head', array(&$this, 'registration_style')); // make unnecessary: instead use jQuery and add to the footer?
+                add_action('login_enqueue_scripts', array(&$this, 'registration_style'));
+                //Rush@20150707                
+            }
 
             // options
             register_activation_hook(WPPlugin::path_to_plugin_directory() . '/wp-recaptcha.php', array(&$this, 'register_default_options')); // this way it only happens once, when the plugin is activated
@@ -158,7 +165,13 @@ if (!class_exists('reCAPTCHA')) {
         
         // require the recaptcha library
         function require_library() {
-            require_once($this->path_to_plugin_directory() . '/recaptchalib.php');
+			//Rush@20150625 --- use built-in wordpress function plugin_dir_path()		
+			$library = plugin_dir_path(__FILE__) . 'recaptchalib.php';
+			//echo $library;
+
+            //require_once($this->path_to_plugin_directory() . '/recaptchalib.php');
+            require_once($library);
+            //Rush@20150625
         }
         
         // register the settings
@@ -168,9 +181,18 @@ if (!class_exists('reCAPTCHA')) {
         
         // todo: make unnecessary
         function register_stylesheets() {
-            $path = WPPlugin::url_to_plugin_directory() . '/recaptcha.css';
-                
-            echo '<link rel="stylesheet" type="text/css" href="' . $path . '" />';
+			//Rush@20150707 --- use built-in wordpress function plugins_url()
+            //$path = WPPlugin::url_to_plugin_directory() . '/recaptcha.css';
+            $path = plugins_url('recaptcha.css', __FILE__);
+            //echo $path;
+            //Rush@20150707
+            
+            //Rush@20150707 --> use wordpress built-in function wp_register_style() 
+            //echo '<link rel="stylesheet" type="text/css" href="' . $path . '" />';
+            wp_register_style('recaptcha', $path);
+            wp_enqueue_style('recaptcha');
+            //Rush@20150707
+            
         }
         
         // stylesheet information
